@@ -1,5 +1,29 @@
-.container {
-    max-width: 36rem;
-    padding: 0 1rem;
-    margin: 3rem auto 6rem;
-  }
+.navbar {
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.932);
+  color: white;
+  position: fixed;
+  z-index: 1;
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-content: center;
+  list-style-type: none;
+}
+
+.navbar ul > li,
+.navbar ul > a {
+  min-width: 4rem;
+  min-height: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
