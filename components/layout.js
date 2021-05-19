@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./layout.module.css";
 
 export const siteTitle = "A bunch of mugs";
@@ -20,6 +21,30 @@ export default function Layout({ children, home }) {
         />
         <meta name="og:title" content={siteTitle} />
       </Head>
+      <header>
+        <nav className={styles.navbar}>
+          <ul>
+            <li>
+              <Link href="/">
+                <a>Home</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/basket">
+                <a>
+                  <span>Basket</span>
+                  <img
+                    src="/images/picnic-basket.svg"
+                    alt="basket"
+                    width={20}
+                    height={20}
+                  />
+                </a>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
       <main>{children}</main>
       {!home && (
         <div className={styles.backToHome}>
