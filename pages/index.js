@@ -1,20 +1,20 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { getAllProducts } from "../database/model";
+// import { getAllProducts } from "../database/model";
 
-export async function getStaticProps ({ req, res }) {
-  const allProducts = await getAllProducts();
-  const productData = JSON.stringify(allProducts);
+// export async function getStaticProps ({ req, res }) {
+//   const allProducts = await getAllProducts();
+//   const productData = JSON.stringify(allProducts);
 
-  return {
-    props: { productData },
-  };
-}
+//   return {
+//     props: { productData },
+//   };
+// }
 
 export default function Home({ productData }) {
 
-  const productsArray = JSON.parse(productData);
+  // const productsArray = JSON.parse(productData);
 
   return (
     <div className={styles.container}>
@@ -25,9 +25,9 @@ export default function Home({ productData }) {
       </Head>
 
       <main className={styles.main}>
-        {productsArray.map(element =>{
+        {/* {productsArray.map(element =>{
           return  <Image key={element.id} src={element.img_path} alt={element.product_name} width={400} height={400} />
-        } )}
+        } )} */}
       
       </main>
 
