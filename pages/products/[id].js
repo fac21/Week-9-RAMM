@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 }
 
@@ -33,7 +33,9 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Post({ productData }) {
+  console.log("1", productData);
   const productObject = JSON.parse(productData);
+  console.log("2", productObject);
   return (
     <Layout>
       <Head>
