@@ -5,10 +5,6 @@ import { getAllProducts } from "../database/model";
 import Layout from "../components/layout";
 import ProductCard from "../components/ProductCard/ProductCard";
 
-
-
-
-
 export async function getStaticProps({ req, res }) {
   const allProducts = await getAllProducts();
   const productData = JSON.stringify(allProducts);
@@ -45,16 +41,7 @@ export default function Home({ productData }) {
       </div>
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
+        <img src="/images/mug.png" alt="logo" width={70} height={80} />
       </footer>
     </Layout>
   );
