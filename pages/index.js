@@ -5,6 +5,10 @@ import { getAllProducts } from "../database/model";
 import Layout from "../components/layout";
 import ProductCard from "../components/ProductCard/ProductCard";
 
+
+
+
+
 export async function getStaticProps({ req, res }) {
   const allProducts = await getAllProducts();
   const productData = JSON.stringify(allProducts);
@@ -31,7 +35,7 @@ export default function Home({ productData }) {
           <ul className={styles.flex_row}>
             {productsArray.map((product) => {
               return (
-                <li className={styles.products_list}>
+                <li key={product.id} className={styles.products_list}>
                   <ProductCard {...product} key={product.id} />
                 </li>
               );

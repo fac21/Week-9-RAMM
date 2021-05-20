@@ -12,7 +12,7 @@ export default function ProductCard(props) {
         height={200}
       />
       <h3>
-        <Link href={`/product/${props.product_name}`}>
+        <Link href={`/products/${props.id}`}>
           <a>{props.product_name}</a>
         </Link>
       </h3>

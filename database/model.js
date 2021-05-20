@@ -7,6 +7,10 @@ export function getAllProducts() {
   return db.query(SELECT_PRODUCTS).then((result) => result.rows);
 }
 
- 
+export function getProductData(id) {
+  const SELECT_PRODUCT = `
+  SELECT * FROM products WHERE id=$1`;
+  return db.query(SELECT_PRODUCT, [id]).then((result) => result.rows[0]);
+}
 
 
