@@ -47,10 +47,11 @@ export default function Layout({ children, home }) {
       </header>
       <main>{children}</main>
       {!home && (
-        <div className={styles.backToHome}>
+        <div className={styles.footer}>
           <Link href="/">
             <a>← Back to home</a>
           </Link>
+          <img src="/images/mug.png" alt="logo" width={70} height={80} />
         </div>
       )}
     </div>

@@ -1,6 +1,6 @@
-// it("can go to home page", () => {
-//     cy.visit("/");
-//   });
+it("can go to home page", () => {
+  cy.visit("/");
+});
   
   it("can display products", () =>
   {
@@ -18,3 +18,4 @@ it("can display products", () =>
   cy.visit("/products/1");
   cy.get("a").contains("Back to home").click();
 })
+
