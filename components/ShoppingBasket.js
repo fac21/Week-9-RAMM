@@ -1,6 +1,4 @@
-
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 
 export default function ShoppingBasket() {
@@ -13,9 +11,9 @@ useEffect(() => {
         setBasket(JSON.parse(localStorage.getItem('basket')))
 
     }
-    // setBasket(JSON.parse(localStorage.getItem('basket')))
     
-},[basket])
+    
+},[])
 
 return(
 
