@@ -3,6 +3,7 @@ import React from "react"
 import Head from "next/head";
 import { getProductData, getAllProducts } from "../../database/model";
 import Image from "next/image";
+//import ItemAddedMessage from "../../components/itemAddedMessage"
 // import styles from "../../
 
 export async function getStaticPaths() {
@@ -30,14 +31,16 @@ export async function getStaticProps({ params }) {
   };
 }
 
+
 export default function Post({ productData }) {
   const productObject = JSON.parse(productData);
   const [currentBasket, setCurrentBasket] = React.useState([]);
+  
 
   function addToBasket(event) {
     event.preventDefault();
     const findId = currentBasket.find(product=> product.id === productObject.id )
-
+  
     if (findId){
       findId.quantity = findId.quantity + parseInt(event.target[0].value);
       findId.totalPrice = findId.quantity  * productObject.price;
@@ -49,7 +52,9 @@ export default function Post({ productData }) {
       basketObj.quantity = parseInt(event.target[0].value);
       basketObj.colour = event.target[1].value;
       basketObj.totalPrice = parseInt(event.target[0].value) * productObject.price;
+      basketObj.img_path = productObject.img_path;
       currentBasket.push(basketObj);
+   
     }
 
     localStorage.setItem("basket", JSON.stringify(currentBasket));
@@ -92,6 +97,7 @@ export default function Post({ productData }) {
           })}
         </select>
         <input type="submit" value="Add to cart" />
+        {/* { clicked ? <ItemAddedMessage /> : ""} */}
       </form>
     </Layout>
   );
