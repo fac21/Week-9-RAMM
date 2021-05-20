@@ -1,12 +1,11 @@
 import Layout from "../../components/layout";
 import Head from "next/head";
 import { getProductData, getAllProducts } from "../../database/model";
+import Image from "next/image";
+// import styles from "../../
 
 export async function getStaticPaths() {
   const pathData = await getAllProducts();
-  //console.log("pathData", pathData)
-  //const pathString = JSON.stringify(pathData);
-  //console.log("pathString", pathString)
 
   const paths = pathData.map(({ id }) => {
     console.log(id);
@@ -26,23 +25,40 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const product = await getProductData(params.id);
   const productData = JSON.stringify(product);
-  console.log("productData", productData);
   return {
     props: { productData },
   };
 }
 
 export default function Post({ productData }) {
-  console.log("1", productData);
   const productObject = JSON.parse(productData);
-  console.log("2", productObject);
   return (
     <Layout>
       <Head>
         <title>{productObject.product_name}</title>
       </Head>
-      <h1>{productObject.product_name}</h1>
-      <img src={productObject.img_path}></img>
+      <Image src={productObject.img_path} width={200} height={200}></Image>
+      <section>
+        <h1>{productObject.product_name}</h1>
+        <p>{productObject.product_description}</p>
+        <p>{productObject.product_price}</p>
+      </section>
+
+      <form>
+        <label htmlFor="quantity">Quantity</label>
+        <input type="number" value="quantity" name="quantity" id="quantity" />
+        <label htmlFor="colour">Choose a colour:</label>
+        <select name="colour" id="colour">
+          {productObject.product_custom.colour.map((colour) => {
+            return (
+              <option value={colour} key={colour}>
+                {colour}
+              </option>
+            );
+          })}
+        </select>
+        <input type="submit" value="Add to cart" />
+      </form>
     </Layout>
   );
 }
