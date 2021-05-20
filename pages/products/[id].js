@@ -30,9 +30,11 @@ export async function getStaticProps({ params }) {
   };
 }
 
+
 export default function Post({ productData }) {
   const productObject = JSON.parse(productData);
   const [currentBasket, setCurrentBasket] = React.useState([]);
+  
 
   function addToBasket(event) {
     event.preventDefault();
@@ -50,9 +52,10 @@ export default function Post({ productData }) {
       basketObj.name = productObject.product_name;
       basketObj.quantity = parseInt(event.target[0].value);
       basketObj.colour = event.target[1].value;
-      basketObj.totalPrice =
-        parseInt(event.target[0].value) * productObject.price;
+      basketObj.totalPrice = parseInt(event.target[0].value) * productObject.price;
+      basketObj.img_path = productObject.img_path;
       currentBasket.push(basketObj);
+   
     }
 
     localStorage.setItem("basket", JSON.stringify(currentBasket));
