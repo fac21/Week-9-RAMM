@@ -1,15 +1,14 @@
 import Layout from "../../components/layout";
+import React from "react"
 import Head from "next/head";
 import { getProductData, getAllProducts } from "../../database/model";
+import Image from "next/image";
+// import styles from "../../
 
 export async function getStaticPaths() {
   const pathData = await getAllProducts();
-  //console.log("pathData", pathData)
-  //const pathString = JSON.stringify(pathData);
-  //console.log("pathString", pathString)
 
   const paths = pathData.map(({ id }) => {
-    console.log(id);
     return {
       params: {
         id: id.toString(),
@@ -26,23 +25,74 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const product = await getProductData(params.id);
   const productData = JSON.stringify(product);
-  console.log("productData", productData);
   return {
     props: { productData },
   };
 }
 
 export default function Post({ productData }) {
-  console.log("1", productData);
   const productObject = JSON.parse(productData);
-  console.log("2", productObject);
+  const [currentBasket, setCurrentBasket] = React.useState([]);
+
+  function addToBasket(event) {
+    event.preventDefault();
+    const findId = currentBasket.find(product=> product.id === productObject.id )
+
+    if (findId){
+      findId.quantity = findId.quantity + parseInt(event.target[0].value);
+      findId.totalPrice = findId.quantity  * productObject.price;
+      currentBasket.map(product=> product.id === productObject.id )      
+    } else {
+      const basketObj = {};
+      basketObj.id = productObject.id; 
+      basketObj.name = productObject.product_name;
+      basketObj.quantity = parseInt(event.target[0].value);
+      basketObj.colour = event.target[1].value;
+      basketObj.totalPrice = parseInt(event.target[0].value) * productObject.price;
+      currentBasket.push(basketObj);
+    }
+
+    localStorage.setItem("basket", JSON.stringify(currentBasket));
+
+  }
+
+
+  React.useEffect(()=>{
+   if(localStorage.getItem("basket")){
+   setCurrentBasket([...JSON.parse(localStorage.getItem("basket"))])
+   }
+
+  },[])
+
+
   return (
     <Layout>
       <Head>
         <title>{productObject.product_name}</title>
       </Head>
-      <h1>{productObject.product_name}</h1>
-      <img src={productObject.img_path}></img>
+      <Image src={productObject.img_path} width={200} height={200}></Image>
+      <section>
+        <h1>{productObject.product_name}</h1>
+        <h2>£{productObject.price}</h2>
+        <p>{productObject.product_description}</p>
+        <p>{productObject.product_price}</p>
+      </section>
+
+      <form onSubmit={addToBasket}>
+        <label htmlFor="quantity">Quantity</label>
+        <input type="number" name="quantity" id="quantity" min={1} max={productObject.product_custom.quantity} required />
+        <label htmlFor="colour">Choose a colour:</label>
+        <select name="colour" id="colour">
+          {productObject.product_custom.colour.map((colour) => {
+            return (
+              <option value={colour} key={colour}>
+                {colour}
+              </option>
+            );
+          })}
+        </select>
+        <input type="submit" value="Add to cart" />
+      </form>
     </Layout>
   );
 }
