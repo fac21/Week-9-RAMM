@@ -14,7 +14,7 @@ export default function Basket() {
 
       <div className={styles.main_container}>
         <main className={styles.flex_column}>
-          <p>shopping basket</p>
+          <h1>Your shopping basket</h1>
           <ShoppingBasket />
         </main>
       </div>
