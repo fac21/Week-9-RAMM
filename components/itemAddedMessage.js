@@ -1,6 +1,6 @@
-import React from "react";
+//import React from "react";
 
-export default function ItemAddedMessage() {
-    return <p>Item added to basket</p>
+export default function ItemAddedMessage(props) {
+    return <p>  {props.name} added to basket</p>
 }
 

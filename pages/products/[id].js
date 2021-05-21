@@ -4,6 +4,7 @@ import Head from "next/head";
 import { getProductData, getAllProducts } from "../../database/model";
 import Image from "next/image";
 import styles from "../../styles/Home.module.css";
+import ItemAddedMessage from "../../components/ItemAddedMessage";
 
 export async function getStaticPaths() {
   const pathData = await getAllProducts();
@@ -30,14 +31,14 @@ export async function getStaticProps({ params }) {
   };
 }
 
-
 export default function Post({ productData }) {
   const productObject = JSON.parse(productData);
   const [currentBasket, setCurrentBasket] = React.useState([]);
-  
+  const [clicked, setClicked] = React.useState(false);
 
   function addToBasket(event) {
     event.preventDefault();
+    
     const findId = currentBasket.find(
       (product) => product.id === productObject.id
     );
@@ -52,20 +53,28 @@ export default function Post({ productData }) {
       basketObj.name = productObject.product_name;
       basketObj.quantity = parseInt(event.target[0].value);
       basketObj.colour = event.target[1].value;
-      basketObj.totalPrice = parseInt(event.target[0].value) * productObject.price;
+      basketObj.totalPrice =
+        parseInt(event.target[0].value) * productObject.price;
       basketObj.img_path = productObject.img_path;
       currentBasket.push(basketObj);
-   
+    
     }
 
     localStorage.setItem("basket", JSON.stringify(currentBasket));
+    setClicked(true)
+    //alert("item added to cart")
+   
   }
 
   React.useEffect(() => {
     if (localStorage.getItem("basket")) {
       setCurrentBasket([...JSON.parse(localStorage.getItem("basket"))]);
+     
     }
   }, []);
+
+
+  
 
   return (
     <Layout>
@@ -105,6 +114,7 @@ export default function Post({ productData }) {
               </select>
               <input type="submit" value="Add to cart" />
             </form>
+            {clicked ? <ItemAddedMessage  name={productObject.product_name} /> : ""}
           </div>
         </main>
       </div>
