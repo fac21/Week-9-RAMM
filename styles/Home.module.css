@@ -145,11 +145,23 @@
   margin: 2rem;
 }
 
+.blurb {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -70px;
+  height: 50vh;
+  background-color: rgb(236, 230, 230);
+  font-size: 3rem;
+  text-align: center;
+}
+
 .footer {
   height: 10vh;
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.932);
   color: white;

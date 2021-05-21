@@ -39,6 +39,13 @@ export default function Home({ productData }) {
           </ul>
         </main>
       </div>
+      <div className={styles.blurb}>
+        <h1>
+          Don't be a mug... <br />
+          <br />
+          buy a mug!
+        </h1>
+      </div>
 
       <footer className={styles.footer}>
         <img src="/images/mug.png" alt="logo" width={70} height={80} />
