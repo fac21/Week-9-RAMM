@@ -44,13 +44,17 @@ export default function Layout({ children, home }) {
           </ul>
         </nav>
       </header>
+
       <main>{children}</main>
+
       {!home && (
         <div className={styles.footer}>
           <Link href="/">
             <a>← Back to home</a>
           </Link>
-          <img src="/images/mug.png" alt="logo" width={70} height={80} />
+          <div className={styles.logo}>
+            <img src="/images/mug.png" alt="logo" width={70} height={80} />
+          </div>
         </div>
       )}
     </div>
