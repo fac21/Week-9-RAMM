@@ -168,6 +168,34 @@
   z-index: 1;
 }
 
+.basket {
+  justify-content: center;
+}
+
+.basket button,
+.productButton {
+  justify-content: center;
+  background-color: black;
+  color: white;
+  padding: 0.5rem;
+  font-weight: 700;
+}
+
+.totalPrice  {
+  text-align: center;
+}
+
+.basket_item{
+  list-style-type: none;
+  margin: 2rem;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

@@ -9,13 +9,52 @@ npm run dev
 # or
 yarn dev
 ```
-
-Co-authored-by: Rosie O'Donnell <61861015+Rosie-ODonnell@users.noreply.github.com>
-Co-authored by: designaky <63958540+designaky@users.noreply.github.com>
-Co-authored by: Maryam Ghorbani <36102515+maryamgh1988@users.noreply.github.com>
-Co-authored by: Michael Devlin <23028288+michael-devlin@users.noreply.github.com>
-
 - Quality: Antonio
 - Deployment: Rosie
 - User: Maryam
 - Facilitator: Michael
+
+---
+`users` table
+| Column      | Type | Constraints |
+| ----------- | ----------- |----------- |
+| id      | serial       |primary key       |
+| email   | text   | unique not null        |
+| password      | text       | not null     |
+| name   | text   |not null        |
+
+---
+
+
+
+`sessions` table
+| Column      | Type | Constraints |
+| ----------- | ----------- |----------- |
+| sid      | text       |primary key       |
+| data  | JSON    | not null |
+
+---
+
+`products` table
+| Column      | Type | Constraints |
+| ----------- | ----------- |----------- |
+| id      | serial       |primary key       |
+| product_name   | Text     | |
+| description  | Text        |        |
+| img_path   | Text        |        |
+| price   | Integer        |        |
+| product_custom   | JSON         |        |
+
+
+`categories` table
+| Column      | Type | Constraints |
+| ----------- | ----------- |----------- |
+| id      | serial       |primary key       |
+| category_name      | text       |     |
+
+
+---
+
+## Design Concept
+
+![](https://i.imgur.com/mq5gcTV.png)
