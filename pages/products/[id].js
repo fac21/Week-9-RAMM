@@ -103,7 +103,7 @@ export default function Post({ productData }) {
                   );
                 })}
               </select>
-              <input type="submit" value="Add to cart" />
+              <input className={styles.productButton} type="submit" value="Add to cart" />
             </form>
           </div>
         </main>
