@@ -53,7 +53,7 @@ export default function Layout({ children, home }) {
           <Link href="/">
             <a>← Back to home</a>
           </Link>
-          <div className={logo}>
+          <div className={styles.logo}>
             <img src="/images/mug.png" alt="logo" width={70} height={80} />
           </div>
         </div>
