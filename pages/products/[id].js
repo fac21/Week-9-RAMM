@@ -62,7 +62,9 @@ export default function Post({ productData }) {
 
     localStorage.setItem("basket", JSON.stringify(currentBasket));
     setClicked(true)
-    //alert("item added to cart")
+    setTimeout(() => {
+      setClicked(false)
+    }, 1000); 
    
   }
 
